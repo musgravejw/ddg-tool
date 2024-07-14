@@ -29,10 +29,12 @@ $ sudo make install
 
 # Usage
 - Install
-- Run `sem create && cd sem_home` 
-- Select binaries to compose the library.  Copy files to `'data'`.
-- Run `sem init`.
-- Select an example to search for similarity.
+- Run `sem create && cd sem_home`
+
+
+
+# Documentation
+Please see `/docs/README`.
   
 # License
 This project uses the GNU Public License Version 3.  Please see the [LICENSE](https://github.com/musgravejw/ddg-tool/blob/HEAD/LICENSE) for more information.
@@ -51,4 +53,4 @@ This project uses the GNU Public License Version 3.  Please see the [LICENSE](ht
 ```
 
 # Author
-John Musgrave <@musgravejw>, 2019-2024.
+John Musgrave <@musgravejw>, 2019-2022.
