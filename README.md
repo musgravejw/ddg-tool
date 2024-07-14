@@ -29,9 +29,15 @@ $ sudo make install
 
 # Usage
 - Install
-- Run `sem create && cd sem_home`
+- Run
 
+## Parameters
 
+### source
+This is a path to the binary to be analyzed.
+
+### dest (optional)
+This is a destination path for the output file.  It defaults to the current directory.  The output file is a `csv` file containing a list of hashes.  Each hash represents the isomorphic uniqueness of the data dependency graph for each program segment.
 
 # Documentation
 Please see `/docs/README`.
