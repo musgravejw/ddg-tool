@@ -11,7 +11,7 @@ This tool returns a collection of graphs in a **set** representing the isomorphi
 
 This is useful because set operations are simple to perform.  Hashing for isomorphism can be performed efficiently.  So behavioral overlap between programs can be measured in terms of set operations, or Jaccard coefficient (Musgrave, et al., 2022, 2024).
 
-The method of isomorphic hashing used is the Weisfeiler-Lehman hashing algorithm.  This is implemented in the NetworkX library.  [Weisfeiler-Lehman] (https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.graph_hashing.weisfeiler_lehman_graph_hash.html#networkx.algorithms.graph_hashing.weisfeiler_lehman_graph_hash)
+The method of isomorphic hashing used is the Weisfeiler-Lehman hashing algorithm.  This is implemented in the NetworkX library.  [Weisfeiler-Lehman](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.graph_hashing.weisfeiler_lehman_graph_hash.html#networkx.algorithms.graph_hashing.weisfeiler_lehman_graph_hash)
 
 The instructions have two operands in the case of data movement, destination and source.  We consider register indirect operands to be a separate node in the data dependency graph as an approximation, although isomorphic equivalence would have to take into consideration the composition of indirect operands.
 

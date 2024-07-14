@@ -29,7 +29,7 @@ $ sudo make install
 
 # Usage
 - Install
-- Run
+- Run `ddg [source_file]`
 
 ## Parameters
 

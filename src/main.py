@@ -21,15 +21,14 @@ import json
 import sys
 
 # Generate adjacency list for block (one block per file)
-def generate_ddg_fingerprint(ddg_size):
-  directory = os.path.join(os.getcwd(), "/ddg/tmp/ddg_segments")
+def generate_ddg_fingerprint(filename, ddg_size):
+  directory = os.path.join("/tmp/ddg/blocks/", filename)
 
   i = 0
 
   hashes = {}
-  d = os.path.join(directory, dirname)
-  for filename in os.listdir(d):
-    f = os.path.join(d, filename)
+  for file in os.listdir(directory):
+    f = os.path.join(directory, file)
     # checking if it is a file
     if os.path.isfile(f):
       with open(f, "r") as myfile:
@@ -65,16 +64,15 @@ def generate_ddg_fingerprint(ddg_size):
         hashes[str(nx.weisfeiler_lehman_graph_hash(G))] = 1
 
     i += 1
-    print(f"  {i}/{len(file_list)} : {(i/len(file_list)*100):.0f}% complete")
 
-    # save hashes to a file
+  # save hashes to a file
 
-    ddg_dir = os.path.join(os.getcwd(), "/tmp/ddg_fingerprints/")
-    f = open(ddg_dir + dirname + ".csv", "w")
-    for k in hashes.keys():
-      f.write(str(k))
-      f.write(",\n")
-    f.close()
+  ddg_dir = os.path.join(os.getcwd(), filename + ".csv")
+  f = open(ddg_dir, "w")
+  for k in hashes.keys():
+    f.write(str(k))
+    f.write(",\n")
+  f.close()
 
 
 # extract DDG's, put in adjacency list
@@ -110,18 +108,18 @@ def init(filepath):
   ddg_size = 1000
   filename = os.path.basename(filepath)
   
-  with open("/tmp/ddg/asm/" + filename + "_src", "w") as myfile:
+  with open(os.path.join("/tmp/ddg/asm/", filename), "w") as myfile:
     ps1 = subprocess.Popen(["objdump", "-D", "--no-show-raw-insn", "--x86-asm-syntax=intel", filepath], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
     ps2 = subprocess.Popen(["cut", "-f2-6"], stdin=ps1.stdout, stdout=myfile, stderr=subprocess.DEVNULL)
-    subprocess.Popen(["mkdir", "-p", "/tmp/ddg/blocks/" + filename])
+    subprocess.run(["mkdir", "-p", os.path.join("/tmp/ddg/blocks/", filename)], check=True)
+    os.chmod(os.path.join("/tmp/ddg/blocks/", filename), 0o777)
 
-  f = os.path.join(os.getcwd(), "/tmp/ddg/asm/", filename + "_src")
+  f = os.path.join("/tmp/ddg/asm/", filename)
 
   perl_command = f'perl -ne \'print $_; open STDOUT, ">", "/tmp/ddg/blocks/{filename}/" . ++$n if /jmp/ || /jg/ || /jge/ || /je/ || /jl/ || /jne/ || /jl/\' {f}'
-  ps1 = subprocess.Popen(perl_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  output, error = ps1.communicate()
+  subprocess.Popen(perl_command, shell=True)
 
-  generate_ddg_fingerprint(ddg_size)
+  generate_ddg_fingerprint(filename, ddg_size)
 
 
 def help():
