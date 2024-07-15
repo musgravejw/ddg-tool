@@ -2,7 +2,7 @@
 ![GitHub License](https://img.shields.io/github/license/musgravejw/ddg-tool)
 ![GitHub Tag](https://img.shields.io/github/v/tag/musgravejw/ddg-tool)
 
-This tool extracts a set of data dependency graphs from a static binary.  The binary's source is segmented based on the program's control flow graph into basic block segments.  For each basic block segment, the data dependency graph is extracted for data movement and arithmetic instructions.  This set of graphs can be exported in a hash of isomorphic uniqueness or the raw graphs can be exported in an adjacency list format.
+This tool extracts a set of data dependency graphs from a static binary.  The binary's source is segmented based on the program's control flow graph into basic block segments.  For each basic block segment, the data dependency graph is extracted for data movement and arithmetic instructions.  This set of graphs can be exported in a hash of isomorphic uniqueness ~~or the raw graphs can be exported in an adjacency list format~~.
 
 # Citation
 To cite this tool, please use the following BibTex citation:
